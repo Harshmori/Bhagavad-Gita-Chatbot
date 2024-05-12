@@ -31,15 +31,14 @@ def retrieve_query(query,k=2):
 
 
 def retrieve_answers(query):
-    query = query + text
     doc_search=retrieve_query(query)
     print(doc_search)
-    response=chain.run(input_documents=doc_search,question=query)
+    response=chain.run(input_documents=doc_search,question=query+text)
     return response
 
 st.title('Bhagawad-Gita-Chatbot')
 our_query = st.text_input("Ask a question related to Bhagawad Gita :")
-text = "if the answer is related to bhagawad gita then it should state chapter number and verse number along with the consice answer"
+text = "state chapter number and verse number along with the consice answer ONLY IF the question is related to bhagawad gita"
 
 if our_query:
     st.write(retrieve_answers(our_query))
